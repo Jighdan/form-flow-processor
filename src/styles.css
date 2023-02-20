@@ -1,0 +1,13 @@
+a[disabled],
+a[aria-disabled="true"] {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+b {
+  text-transform: uppercase;
+}
+
+option {
+  text-transform: capitalize;
+}

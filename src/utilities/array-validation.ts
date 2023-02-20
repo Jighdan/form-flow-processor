@@ -1,0 +1,1 @@
+export const isTrue = <Type>(condition: Type) => !!condition;
