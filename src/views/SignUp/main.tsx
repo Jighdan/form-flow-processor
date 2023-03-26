@@ -1,9 +1,9 @@
-import { useFormFlowContext } from "form-flow";
 import { FlowTemplate } from "components/FlowTemplate";
+import { useSignUpFlowContext } from "./form-flow";
 
 export const ViewSignUp = () => {
   const { CurrentStepView, progressPercentage, meta, moveToPreviousValidStep } =
-    useFormFlowContext();
+    useSignUpFlowContext();
 
   return (
     <FlowTemplate

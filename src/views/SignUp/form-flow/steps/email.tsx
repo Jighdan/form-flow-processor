@@ -1,9 +1,12 @@
+import { Identifiers } from "../identifiers";
 import { FormFields, Step } from "../interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Fields = Pick<FormFields, "email">;
 
 export const StepEmail: Step = {
+  identifier: Identifiers.EMAIL,
+
   Component: ({ moveToNextStep, storeFields, updateStoreFields }) => {
     const form = useForm<Fields>({
       mode: "onChange",

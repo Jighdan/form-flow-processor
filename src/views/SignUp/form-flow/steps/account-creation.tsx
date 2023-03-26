@@ -4,8 +4,11 @@ import { useIsMounted } from "usehooks-ts";
 import { Link } from "react-router-dom";
 import { Routes } from "enums/routes";
 import { isTrue } from "utilities/array-validation";
+import { Identifiers } from "../identifiers";
 
 export const StepAccountCreation: Step = {
+  identifier: Identifiers.ACCOUNT_CREATION,
+
   isAValidationView: true,
 
   doesMeetConditionFields: (fields) =>

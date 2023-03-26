@@ -1,25 +1,24 @@
-import { useRef } from "react";
-import { ContextProviderProps } from "../interfaces";
+import { useRef } from 'react';
 
-type Params<FormFields> = Pick<ContextProviderProps<FormFields>, 'formFieldsInitialState' | 'onFormFieldsUpdate'>;
+import { ContextProviderProps } from '../interfaces';
 
-export const useFields = <FormFields>({ formFieldsInitialState, onFormFieldsUpdate }: Params<FormFields>) => {
-	const fields = useRef<FormFields>(formFieldsInitialState);
+type Params<FormFields> = Pick<ContextProviderProps<FormFields>, 'initialStoreFields' | 'onStoreUpdate'>;
 
-	const getFields = () => {
-		return fields.current;
-	};
+export const useFields = <FormFields>({ initialStoreFields, onStoreUpdate }: Params<FormFields>) => {
+  const fields = useRef<FormFields>(initialStoreFields);
 
-	const updateFields = (fieldsToUpdate: Partial<FormFields>) => {
-		const currentFields = getFields();
-		const updatedFields = { ...currentFields, ...fieldsToUpdate };
+  const getFields = () => fields.current;
 
-		fields.current = updatedFields;
+  const updateFields = async (fieldsToUpdate: Partial<FormFields>) => {
+    const currentFields = getFields();
+    const updatedFields = { ...currentFields, ...fieldsToUpdate };
 
-		if (onFormFieldsUpdate) {
-			onFormFieldsUpdate(updatedFields);
-		};
-	};
+    fields.current = updatedFields;
 
-	return { getFields, updateFields };
+    if (onStoreUpdate) {
+      await onStoreUpdate(updatedFields);
+    }
+  };
+
+  return { getFields, updateFields };
 };

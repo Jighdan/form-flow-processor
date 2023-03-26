@@ -1,9 +1,12 @@
+import { Identifiers } from "../identifiers";
 import { FormFields, Step } from "../interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Fields = Pick<FormFields, "accountType">;
 
 export const StepAccountType: Step = {
+  identifier: Identifiers.ACCOUNT_TYPE,
+
   Component: ({
     storeFields,
     updateStoreFields,

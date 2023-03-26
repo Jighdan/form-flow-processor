@@ -2,18 +2,23 @@ import { Step } from "../../interfaces";
 import { isTrue } from "utilities/array-validation";
 import { Link } from "react-router-dom";
 import { Routes } from "enums/routes";
+import { Identifiers } from "../../identifiers";
 
-export const StepCorporateValidation: Step = {
+export const StepIndividualValidation: Step = {
+  identifier: Identifiers.INDIVIDUAL_VALIDATION,
+
   isAValidationView: true,
 
   willBePartOfTheFlow: ({ accountType }) =>
-    ["corporate", ""].includes(accountType),
+    ["individual", ""].includes(accountType),
 
   doesMeetConditionFields: (fields) =>
     [
-      fields.accountType === "corporate",
-      fields.companyName,
-      fields.industry,
+      fields.accountType === "individual",
+      fields.firstName,
+      fields.lastName,
+      fields.time,
+      fields.color,
     ].every(isTrue),
 
   Component: ({ storeFields }) => {

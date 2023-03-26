@@ -1,22 +1,29 @@
-import { FormFlowProvider } from "form-flow";
 import { useLocalStorage } from "usehooks-ts";
-import { ViewSignUp, STEPS, FIELDS, FormFields } from "views/SignUp";
+import {
+  ViewSignUp,
+  SignUpFlowContextProvider,
+  FormFields,
+} from "views/SignUp";
+
+const LOCAL_STORAGE_KEY = "sign-up-flow";
+const INITIAL_STORE_FIELDS: FormFields = { email: "", password: "" };
 
 export const PageSignUp = () => {
-  const localStorageKey = 'sign-up-flow';
-  const [store, setStore] = useLocalStorage(localStorageKey, FIELDS);
+  const [store, setStore] = useLocalStorage(
+    LOCAL_STORAGE_KEY,
+    INITIAL_STORE_FIELDS
+  );
 
   const onFormFieldsUpdate = async (fields: FormFields) => {
     await setStore(fields);
   };
 
   return (
-    <FormFlowProvider
-      formFieldsInitialState={store}
-      steps={STEPS}
-      onFormFieldsUpdate={onFormFieldsUpdate}
+    <SignUpFlowContextProvider
+      initialStoreFields={store}
+      onStoreUpdate={onFormFieldsUpdate}
     >
       <ViewSignUp />
-    </FormFlowProvider>
+    </SignUpFlowContextProvider>
   );
 };

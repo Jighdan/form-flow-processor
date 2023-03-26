@@ -2,11 +2,15 @@ import { Step } from "../interfaces";
 import { useEffect, useState } from "react";
 import { useIsMounted } from "usehooks-ts";
 import { isTrue } from "utilities/array-validation";
+import { Identifiers } from "../identifiers";
 
 export const StepReferralCodeValidation: Step = {
+  identifier: Identifiers.REFERRAL_CODE_VALIDATION,
+
   isAValidationView: true,
 
-  doesMeetConditionFields: (fields) => [fields.email, fields.referralCode].every(isTrue),
+  doesMeetConditionFields: (fields) =>
+    [fields.email, fields.referralCode].every(isTrue),
 
   Component: ({ moveToNextStep }) => {
     const [isLoading, setIsLoading] = useState(true);

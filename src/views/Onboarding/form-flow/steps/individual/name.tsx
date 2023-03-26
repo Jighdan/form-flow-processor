@@ -1,10 +1,13 @@
 import { FormFields, Step } from "../../interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { isTrue } from "utilities/array-validation";
+import { Identifiers } from "../../identifiers";
 
 type Fields = Pick<FormFields, "firstName" | "lastName">;
 
 export const StepIndividualName: Step = {
+  identifier: Identifiers.INDIVIDUAL_NAME,
+
   willBePartOfTheFlow: ({ accountType }) =>
     ["individual", ""].includes(accountType),
 

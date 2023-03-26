@@ -1,12 +1,15 @@
 import { FormFields, Step } from "../interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMemo } from "react";
+import { Identifiers } from "../identifiers";
 
 interface Fields extends Pick<FormFields, "password"> {
   passwordConfirmation: FormFields["password"];
 }
 
 export const StepPassword: Step = {
+  identifier: Identifiers.PASSWORD,
+
   doesMeetConditionFields: (fields) => !!fields.email,
 
   Component: ({ moveToNextStep, storeFields, updateStoreFields }) => {

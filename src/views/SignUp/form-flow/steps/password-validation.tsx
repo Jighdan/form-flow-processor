@@ -1,7 +1,10 @@
+import { Identifiers } from "../identifiers";
 import { Step } from "../interfaces";
 import { isTrue } from "utilities/array-validation";
 
 export const StepPasswordValidation: Step = {
+  identifier: Identifiers.PASSWORD_VALIDATION,
+
   isAValidationView: true,
 
   doesMeetConditionFields: (fields) =>

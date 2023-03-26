@@ -2,9 +2,13 @@ import { FormFields, Step } from "../../interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { isTrue } from "utilities/array-validation";
 
+import { Identifiers } from "../../identifiers";
+
 type Fields = Pick<FormFields, "companyName">;
 
 export const StepCorporateCompanyName: Step = {
+  identifier: Identifiers.CORPORATE_COMPANY_NAME,
+
   willBePartOfTheFlow: ({ accountType }) =>
     ["corporate", ""].includes(accountType),
 
